@@ -25,3 +25,40 @@ func TestGenerateSeparatedLine(t *testing.T) {
 		panic("at the disco")
 	}
 }
+
+func TestMD5Hash(t *testing.T) {
+	type args struct {
+		text string
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			name:    "test \"secret\"",
+			args:    args{"secret"},
+			want:    "5ebe2294ecd0e0f08eab7690d2a6ee69",
+			wantErr: false,
+		},
+		{
+			name:    "test empty",
+			args:    args{},
+			want:    "d41d8cd98f00b204e9800998ecf8427e",
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := MD5Hash(tt.args.text)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("MD5Hash() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("MD5Hash() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

@@ -1,6 +1,8 @@
 package tricks
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"strings"
 )
 
@@ -41,4 +43,14 @@ func RepeatSeparated(s string, sep string, number int) string {
 	}
 
 	return s + strings.Repeat(sep+s, number-1)
+}
+
+//MD5Hash generates MD5 string
+func MD5Hash(text string) (string, error) {
+	md5 := md5.New()
+	if _, err := md5.Write([]byte(text)); err != nil {
+		return "", err
+	}
+
+	return hex.EncodeToString(md5.Sum(nil)), nil
 }
