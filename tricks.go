@@ -54,3 +54,18 @@ func MD5Hash(text string) (string, error) {
 
 	return hex.EncodeToString(md5.Sum(nil)), nil
 }
+
+// UniqueStrings ...
+func UniqueStrings(strs []string) []string {
+	stringsMap := make(map[string]bool)
+	for _, str := range strs {
+		stringsMap[str] = true
+	}
+
+	results := make([]string, 0, len(stringsMap))
+	for k := range stringsMap {
+		results = append(results, k)
+	}
+
+	return results
+}

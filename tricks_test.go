@@ -62,3 +62,11 @@ func TestMD5Hash(t *testing.T) {
 		})
 	}
 }
+
+func TestUniqueStrings(t *testing.T) {
+	testSlice := []string{"aaa", "bbb", "aaa", "ccc", "ccc"}
+	testSlice = UniqueStrings(testSlice)
+	if len(testSlice) != 3 {
+		panic("at the disco")
+	}
+}
