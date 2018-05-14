@@ -20,6 +20,12 @@ func TestGenerateQuestionMarks(t *testing.T) {
 	}
 }
 
+func TestQueryArguments(t *testing.T) {
+	if QueryArguments(4, 3) != "$3,$4,$5,$6,$7" {
+		panic("at the disco " + QueryArguments(10, 3))
+	}
+}
+
 func TestGenerateSeparatedLine(t *testing.T) {
 	if RepeatSeparated("?", ",", 5) != "?,?,?,?,?" {
 		panic("at the disco")

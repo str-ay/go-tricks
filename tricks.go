@@ -1,8 +1,10 @@
 package tricks
 
 import (
+	"bytes"
 	"crypto/md5"
 	"encoding/hex"
+	"strconv"
 	"strings"
 )
 
@@ -33,6 +35,29 @@ func QuestionMarks(number int) string {
 	}
 
 	return RepeatSeparated("?", ",", number)
+}
+
+// QueryArguments is useful for dynamic SQL:
+// in(" + QuestionMarks(len(ids)) + ") -> in($1,$2,$3,$4,$5)
+func QueryArguments(number, start int) string {
+	if number < 1 {
+		return ""
+	}
+
+	if number == 1 {
+		return "$" + strconv.Itoa(start)
+	}
+
+	result := bytes.Buffer{}
+	for i := start; i <= start+number; i++ {
+		result.WriteString("$")
+		result.WriteString(strconv.Itoa(i))
+		if i != start+number {
+			result.WriteString(",")
+		}
+	}
+
+	return result.String()
 }
 
 // RepeatSeparated repeats string with delimiter
