@@ -21,8 +21,14 @@ func TestGenerateQuestionMarks(t *testing.T) {
 }
 
 func TestQueryArguments(t *testing.T) {
-	if QueryArguments(4, 3) != "$3,$4,$5,$6,$7" {
-		panic("at the disco " + QueryArguments(10, 3))
+	arr := []string{"1", "2", "3", "4"}
+	if QueryArguments(len(arr), 3) != "$3,$4,$5,$6,$7" {
+		panic("at the disco")
+	}
+
+	arr = []string{"2"}
+	if result := QueryArguments(len(arr), 3); result != "$3" {
+		panic("at the disco")
 	}
 }
 

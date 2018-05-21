@@ -38,7 +38,7 @@ func QuestionMarks(number int) string {
 }
 
 // QueryArguments is useful for dynamic SQL:
-// in(" + QuestionMarks(len(ids)) + ") -> in($1,$2,$3,$4,$5)
+// in(" + QueryArguments(len(ids)) + ") -> in($1,$2,$3,$4,$5)
 func QueryArguments(number, start int) string {
 	if number < 1 {
 		return ""
