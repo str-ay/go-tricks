@@ -31,10 +31,10 @@ func QueryArguments(number, start int) string {
 	}
 
 	result := bytes.Buffer{}
-	for i := start; i <= start+number; i++ {
+	for i := start; i <= start-1+number; i++ {
 		result.WriteString("$")
 		result.WriteString(strconv.Itoa(i))
-		if i != start+number {
+		if i != start-1+number {
 			result.WriteString(",")
 		}
 	}
