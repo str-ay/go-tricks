@@ -113,3 +113,12 @@ func UniqueStrings(strs []string) []string {
 
 	return results
 }
+
+func TrimToNil(str string) (strPtr *string) {
+	trimmed := strings.TrimSpace(str)
+	if trimmed == "" {
+		return strPtr
+	}
+
+	return &str
+}
